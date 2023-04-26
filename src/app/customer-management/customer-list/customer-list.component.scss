@@ -1,0 +1,51 @@
+.customer-list {
+  width: 90%;
+  margin: 30px auto;
+  border: 1px solid #f1f1f1;
+  box-shadow: 10px 10px 10px #f1f1f1;
+
+  .table-header {
+    background-color: #1c4e80;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    h3 {
+      color: #fff;
+      margin: 0px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    mat-icon {
+      color: #fff;
+      font-size: 30px;
+      margin: auto 10px;
+      cursor: pointer;
+    }
+  }
+  .demo-table {
+    width: 100%;
+  }
+  .custom-column{
+    width:20% !important;
+  }
+  .action-column {
+    .mat-icon {
+      margin-right: 20px;
+      cursor: pointer;
+
+      &:first-of-type {
+        color: #488a99;
+      }
+
+      &:nth-of-type(2) {
+        color: #dbae58;
+      }
+      &:nth-of-type(3) {
+        color: #d32d41;
+      }
+    }
+  }
+
+  
+}

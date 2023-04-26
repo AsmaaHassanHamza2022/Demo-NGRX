@@ -1,0 +1,52 @@
+<div class="add-edit-form">
+    <div class="form-header">
+        <span [ngSwitch]="modalMode">
+            <p *ngSwitchCase="ModalMode.AddMode" >
+                Add New Customer
+            </p>
+            <p *ngSwitchCase="ModalMode.EditMode">
+                Edit Customer Date
+            </p>
+            <p *ngSwitchDefault="ModalMode.PreviewMode">
+                Preview Customer Date
+            </p>
+            </span>
+    </div>
+    <form [formGroup]="form">
+        <mat-form-field appearance="standard">
+            <mat-label>First Name </mat-label>
+            <input [readonly]="modalMode == ModalMode.PreviewMode" formControlName="firstName" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Last Name </mat-label>
+            <input [readonly]="modalMode == ModalMode.PreviewMode" formControlName="lastName" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Email </mat-label>
+            <input [readonly]="modalMode == ModalMode.PreviewMode" formControlName="email" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Address</mat-label>
+            <input [readonly]="modalMode == ModalMode.PreviewMode" formControlName="address" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Phone Number </mat-label>
+            <input [readonly]="modalMode == ModalMode.PreviewMode" formControlName="phoneNumber" matInput>
+        </mat-form-field>
+
+        <div class="actions">
+            <button *ngIf="modalMode == ModalMode.AddMode" (click)="onAddNewCustomer()" [disabled]="form.invalid"
+                mat-raised-button>Add New Customer</button>
+            <button *ngIf="modalMode == ModalMode.EditMode" (click)="onEditCustomerDate()" [disabled]="form.invalid"
+                mat-raised-button>Edit Customer Data</button>
+
+            <button (click)="onCancle()" class="cancle" mat-raised-button>Cancle</button>
+        </div>
+
+
+    </form>
+
+</div>
