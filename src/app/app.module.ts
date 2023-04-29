@@ -18,6 +18,8 @@ import { AddEditCustomerComponent } from './customer-management/add-edit-custome
 import { HeaderComponent } from './layout/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({customers:CustomerReducer}),
+    
     BrowserAnimationsModule,
     ReactiveFormsModule,
 
@@ -39,7 +42,12 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    StoreDevtoolsModule.instrument({
+     maxAge: 25,
+    logOnly: environment.production,
+      autoPause: true,
+      }),
   ],
   
   bootstrap: [AppComponent]

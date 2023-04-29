@@ -88,13 +88,13 @@ export class CustomerListComponent implements OnInit {
   }
 
   onPreview(customerId:number){
-    this.store.select(getCustomerByIndex(customerId)).pipe().subscribe((customer)=>{
+    this.store.select(getCustomerByIndex(customerId)).pipe(take(1)).subscribe((customer)=>{
       this.dialogConfig.data={
         Mode:ModalMode.PreviewMode,
         data:customer,
       }
-      console.log("customer id" ,customer?.firstName);
-      // this.dialog.open(AddEditCustomerComponent, this.dialogConfig);
+      
+      this.dialog.open(AddEditCustomerComponent, this.dialogConfig);
     })
   }
 }
