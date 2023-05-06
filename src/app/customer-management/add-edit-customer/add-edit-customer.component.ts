@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { CustomerService } from 'src/app/Services/customer.service';
 import { ModalMode } from 'src/app/enums/modal.mode';
 import { Customer, ModalData } from 'src/app/models/customer';
 import {
@@ -25,7 +26,9 @@ export class AddEditCustomerComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) data: any,
-    private store: Store<{ customers: Customer[] }>
+    private customerService:CustomerService,
+    private store: Store<{ customers: Customer[] }>,
+  
   ) {
 
     this.modalData = data;
@@ -48,20 +51,28 @@ export class AddEditCustomerComponent implements OnInit {
   }
 
   public onAddNewCustomer() {
-    const randomId = Math.floor(Math.random() * Date.now()).toString(16);
-    this.store.dispatch(
-      addCustomer({ customer: { ...this.form.value, id: randomId } })
-    );
+    // const randomId = Math.floor(Math.random() * Date.now()).toString(16);
+    // this.store.dispatch(
+    //   addCustomer({ customer: { ...this.form.value, id: randomId } })
+    // );
+    this.store.dispatch(addCustomer({customer:{...this.form.value}}))
     this.onCancle();
   }
 
   public onEditCustomerDate() {
+    // this.store.dispatch(
+    //   updateCustomer({
+    //     customerId: this.modalData.data.id,
+    //     updatedCustomerdata: { ...this.form.value, id: this.modalData.data.id },
+    //   })
+    // );
+
     this.store.dispatch(
-      updateCustomer({
+        updateCustomer({
         customerId: this.modalData.data.id,
         updatedCustomerdata: { ...this.form.value, id: this.modalData.data.id },
       })
-    );
+    )
     this.onCancle();
   }
 

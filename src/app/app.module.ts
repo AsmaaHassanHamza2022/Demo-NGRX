@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AddEditCustomerComponent } from './customer-management/add-edit-customer/add-edit-customer.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -20,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AngularFireModule } from '@angular/fire/compat';
+import { EffectsModule } from '@ngrx/effects';
+import { CustomerEffects } from './store/effects/customer.effects';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    
+
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    
     StoreModule.forRoot({customers:CustomerReducer}),
+    EffectsModule.forRoot([CustomerEffects]),
     
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -43,6 +52,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatSnackBarModule,
     StoreDevtoolsModule.instrument({
      maxAge: 25,
     logOnly: environment.production,

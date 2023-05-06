@@ -3,10 +3,11 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store';
 import { Observable, take } from 'rxjs';
 import { Customer } from 'src/app/models/customer';
-import { removeCustomer } from 'src/app/store/actions/customer.actions';
+import { Types, removeCustomer } from 'src/app/store/actions/customer.actions';
 import { getCustomerByIndex } from 'src/app/store/selectors/customer.selector';
 import { AddEditCustomerComponent } from '../add-edit-customer/add-edit-customer.component';
 import { ModalMode } from 'src/app/enums/modal.mode';
+import { CustomerService } from 'src/app/Services/customer.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -53,7 +54,7 @@ export class CustomerListComponent implements OnInit {
   
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  constructor(private store:Store<{customers:Customer[]}>,private dialog: MatDialog) { 
+  constructor(private store:Store<{customers:Customer[]}>,private dialog: MatDialog ,private customerService:CustomerService) { 
     this.ELEMENT_DATA=this.store.pipe(select('customers')); 
     this.ELEMENT_DATA.subscribe((customerList:Customer[])=>{
       this.dataSource=customerList;
@@ -61,6 +62,11 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch({type:Types.loadCustomer})
+    // this.customerService.getAllCustomers().subscribe((res)=>{
+    //   this.dataSource=res;
+    // })
+
     this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.width='50%';
@@ -82,8 +88,8 @@ export class CustomerListComponent implements OnInit {
     this.dialog.open(AddEditCustomerComponent, this.dialogConfig);
   }
 
-  onDelete(customerIndex:number){
-    this.store.dispatch(removeCustomer({customerId:customerIndex
+  onDelete(customerID:number){
+    this.store.dispatch(removeCustomer({customerId:customerID
     }))
   }
 
