@@ -18,9 +18,12 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
+    "strictPropertyInitialization": false,
     "lib": [
       "es2020",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "es5", "es6",
     ]
   },
   "angularCompilerOptions": {

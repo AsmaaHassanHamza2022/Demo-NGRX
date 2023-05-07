@@ -3,7 +3,10 @@
   margin: 30px auto;
   border: 1px solid #f1f1f1;
   box-shadow: 10px 10px 10px #f1f1f1;
-
+ 
+.responsive-table{
+  width: 100% !important;
+}
   .table-header {
     background-color: #1c4e80;
     display: flex;
@@ -49,3 +52,24 @@
 
   
 }
+
+
+// @media screen and (max-width: 600px) {
+//   .responsive-table {
+//     display: block;
+//   }
+//   .mat-header-row {
+//     display: none;
+//   }
+//   .mat-row {
+//     display: block;
+//     border-bottom: 1px solid #ccc;
+//     padding: 10px 0;
+//   }
+//   .mat-cell:before {
+//     content: attr(data-label);
+//     float: left;
+//     font-weight: bold;
+//     text-transform: uppercase;
+//   }
+// }

@@ -24,6 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire/compat';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomerEffects } from './store/effects/customer.effects';
+import { MatTableResponsiveModule } from './utilities/modules/mat-table-responsive/mat-table-responsive.module';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CustomerEffects } from './store/effects/customer.effects';
     logOnly: environment.production,
       autoPause: true,
       }),
+      MatTableResponsiveModule
   ],
   
   bootstrap: [AppComponent]
